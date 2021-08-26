@@ -18,3 +18,13 @@
 
 ### Audience
 - Your target audience for your notebook walkthrough is the Codeup Data Science team. 
+
+### Deliverables
+- Jupyter Notebook Report 
+- README.md file containing the project information
+- CSV file with customer_id, probability of churn, and prediction of churn
+- Acquire and prepare files
+- Notebook walkthrough presentation 
+
+### Project Specifications
+- Why are our customers churning?
