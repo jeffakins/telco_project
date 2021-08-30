@@ -63,7 +63,7 @@ def decision_tree(X_train, y_train, X_validate, y_validate, threshold=0.05, max_
 
     # make a dataframe
     results = pd.DataFrame(metrics)
-    print(results)
+    # print(results)
 
     # plot the data
     results[['max_depth', 'train_accuracy', 'validate_accuracy']].set_index('max_depth').plot(figsize = (16,9), linewidth=2)
@@ -125,7 +125,7 @@ def rand_forest(X_train, y_train, X_validate, y_validate, threshold=0.05, max_de
 
     # make a dataframe
     results = pd.DataFrame(metrics)
-    print(results)
+    # print(results)
 
     results[['max_depth', 'train_accuracy', 'validate_accuracy']].set_index('max_depth').plot(figsize = (16,9), linewidth=2)
     plt.ylim(0.50, 1)
@@ -166,7 +166,7 @@ def knn(X_train, y_train, X_validate, y_validate, max_k = 26):
 
     # make a dataframe
     results = pd.DataFrame(metrics)
-    print(results)
+    # print(results)
 
     # plot the data
     results[['k', 'train_accuracy', 'validate_accuracy']].set_index('k').plot(figsize = (16,9), linewidth=2)
