@@ -20,6 +20,10 @@ def train_validate_test_split(df, target, seed=123):
     train, validate = train_test_split(train_validate, test_size=0.3, 
                                        random_state=seed,
                                        stratify=train_validate[target])
+    print(f'train:    {train.shape}')
+    print(f'validate: {validate.shape}')
+    print(f'test:     {test.shape}')
+
     return train, validate, test
 
 

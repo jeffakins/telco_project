@@ -13,7 +13,8 @@ def prep_telco():
     
     df.total_charges = df.total_charges.str.strip()     # Removing white space
     df.total_charges = df.total_charges.replace('', 0)  # Replacing total_charges empty cells with 0 due to tenure = 0
-    
+    df.total_charges = df.total_charges.astype('float64') # Convert from obj to 
+
     to_replace={'Yes': 1, 'No': 0, 
                 'No internet service': 0, 
                 'No phone service': 0}                  # Encoding (Changing Yes to 1 and No to 0)
