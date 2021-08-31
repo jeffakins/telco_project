@@ -26,6 +26,33 @@
 - Acquire and prepare files
 - Notebook walkthrough presentation 
 
+## Executive Summary
+#### Why are our customers churning?
+- They are on a monthly contract
+- They have fiber internet	
+- They pay with electronic_check	
+- Higher monthly_charges	
+- Utilize paperless_billing	
+- They are a senior_citizen	
+- They stream tv	
+- They stream movies
+
+#### Why our customers are staying?
+- They use our online backup service	
+- They pay with a mailed check	
+- They pay using bank transfer
+- They pay with credit card	
+- They have dsl internet	
+- They have a partner and/or dependents	
+- They use our tech support	
+- They use online security	
+- They have a one or two year contract	
+- They do not use our internet services		
+ 	
+### Can we predict churn?
+- #### Based on these factors we can predict with 80% accuracy whether or not a customer will churn
+
+
 ### Data dictionary
 Target |   Description |    Data Type
 --|--|--
@@ -59,5 +86,66 @@ Other   | Description   | Data Type
 --|--|--
 customer_id |   customer id number  | object
 
-### Project Specifications
-- Why are our customers churning?
+## Project Specifications
+- Answering the question "Why are our customers churning?"
+- If we can answer the above question, then can we predict customer churn?
+
+### Plan:
+- Initially model all data
+- Refine features based on explore results
+
+### Acquire:
+- Acquire function brings in TELCO data from SQL server
+- 7043 Rows
+- 24 Columns
+
+### Prepare:
+- Uses the prep_telco function to bring in the Telco Data
+- Drop Duplicates
+- Removed white space
+- Replaced 'total_charges' empty cells with 0 due to tenure = 0
+- Convert 'total_charges' from obj to float
+- Encoding (Changing Yes to 1 and No to 0)
+- Created dummy variables for 'gender', 'contract', 'internet', 'payment_type' 
+- Concatenated dummy variables
+- Dropped 7 redundant columns
+- Renamed 12 columns to shorten the names
+- 7043 Rows
+- 29 Columns
+
+### Explore:
+#### Univariate
+##### Findings: 
+- Gained a better understanding of the ratio of the customers per category
+#### Bivariate
+##### Statistical Findings: Answering the question, is there a relationship between churn and all other customer features?
+- Significance Level, alpha = 0.05
+- Target = churn
+###### 24 Chi^2 Tests - Churn vs Categorical Variables
+- ${H}_{0}$: churn is independent of each categorical variable
+- ${H}_{a}$: churn has a dependent relationship with each categorical variable
+- Rejected ${H}_{0}$ in all cases due to p<0.05, except: 'male', 'female', 'phone_service'
+###### 2 Mann-Whitney Test - Churn vs Continuous Variables
+- ${H}_{0}$: there is no relationship between tenure or monthly charges and churn 
+- ${H}_{a}$: churn has a linear relationship with each continuous variable
+- Rejected ${H}_{0}$ due to p<0.05 in both cases
+#### Multivariate
+- Grouped by category
+- Showed clusters of churn within all features
+#### Correlation Heatmap
+##### Findings:
+- total_charges and tenure 
+- monthly charges and fiber
+- monthly charges and no internet
+- male and female
+- dls and fiber
+
+### Model & Evaluate
+- Decision Tree
+- Random Forest
+- KNN
+- Logistical Regression
+##### Best model was a Random Forrest using all features
+
+## Conclusion 
+### We can predict with roughly 80% accuracy whether a customer will churn. I recommend sharing this model with our customer service representatives to better inform them when they are supporting our TELCO customers. 
