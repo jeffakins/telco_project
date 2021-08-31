@@ -237,3 +237,83 @@ def log_regression_val(X_train, y_train, X_validate, y_validate):
     #print(val_class_report)                             # Print accuracy report on Validate Data
 
     return val_class_report
+
+
+# Model Comparison Report
+
+def model_report_all_data():
+    '''
+    This is a function to output the best models based on train accuracy and minimizing oversampling
+    Utilizing All Data features from Telco
+    '''
+    report1 = {
+        'Model': ['DT', 'RF', 'KNN', 'LR'],
+        'Parameters' : ['Max Depth = 3', 'Max Depth = 6 & Min Sample Leaf = 2', 'KNN = 19', 'Default'],
+        'Train' : [0.792, 0.818, 0.796, 0.805],
+        'Validate' : [0.794, 0.808, 0.789, 0.792]
+    } 
+    report = pd.DataFrame(report1)
+    report['Difference'] = report.Train - report.Validate
+    return report
+
+def model_report_select_data():
+    '''
+    This is a function to output the best models based on train accuracy and minimizing oversampling
+    Utilizing select features from Telco
+    '''
+    report1 = {
+        'Model': ['DT', 'RF', 'KNN', 'LR'],
+        'Parameters' : ['Max Depth = 5', 'Max Depth = 6 & Min Sample Leaf = 4', 'KNN = 14', 'Default'],
+        'Train' : [0.798, 0.812, 0.813, 0.807],
+        'Validate' : [0.794, 0.802, 0.800, 0.801]
+    } 
+    report = pd.DataFrame(report1)
+    report['Difference'] = report.Train - report.Validate
+    return report
+
+
+# Best Model to run on test data
+
+def best_rf(X_train, y_train, y, X):
+    '''This function outputs a classification report for the best TELCO model'''                                                
+    # Create the model
+    rf = RandomForestClassifier(bootstrap=True, 
+                        class_weight=None, 
+                        criterion='gini',
+                        min_samples_leaf=2,
+                        n_estimators=100,
+                        max_depth=6, 
+                        random_state=123)
+
+    # Fit the model (on train and only train)
+    rf = rf.fit(X_train, y_train)
+    y_pred = rf.predict(X)
+    
+    # Create the report
+    report = pd.DataFrame(classification_report(y, y_pred, output_dict=True))
+    return report
+
+
+# Prediction on Test
+def best_model_churn_prediction(X_train, y_train, y, X):
+    '''a CSV file with customer_id, probability of churn, and prediction of churn. 
+    (1=churn, 0=not_churn). These predictions should be from your best performing 
+    model ran on X_test. Note that the order of the y_pred and y_proba are numpy 
+    arrays coming from running the model on X_test. The order of those values will 
+    match the order of the rows in X_test, so you can obtain the customer_id from 
+    X_test and concatenate these values together into a dataframe to write to CSV.'''
+    rf = RandomForestClassifier(bootstrap=True, 
+                    class_weight=None, 
+                    criterion='gini',
+                    min_samples_leaf=2,
+                    n_estimators=100,
+                    max_depth=6, 
+                    random_state=123)
+    # Fit the model (on train and only train)
+
+    rf = rf.fit(X_train, y_train)
+    y_pred = rf.predict(X)  
+    return y_pred
+
+
+    
