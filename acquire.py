@@ -19,6 +19,9 @@ def get_connection(db, user=env.username, host=env.hostname, password=env.passwo
 
 # Function to retrieve the TELCO Data Set from CODEUP's mySQL Server 
 def get_telco_data():
+    '''
+    Function to retrieve the TELCO Data Set from CODEUP's mySQL Server
+    '''
     if os.path.isfile('telco_churn.csv'):
         df = pd.read_csv('telco_churn.csv', index_col=0)  # If csv file exists read in data from csv file.
     else:

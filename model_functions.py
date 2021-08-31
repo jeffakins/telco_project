@@ -23,6 +23,9 @@ warnings.filterwarnings("ignore")
 #---------------Functions-------------------------------
 # Decision Tree:
 def decision_tree(X_train, y_train, X_validate, y_validate, threshold=0.05, max_dep=25):
+    '''
+    This function uses the sklearn DecisionTreeClassifier to create a Decision Tree
+    '''
     threshold = threshold   # Set our threshold for how overfit we'll tolerate
 
     models = []             # Initiate models list for outputs
@@ -68,6 +71,7 @@ def decision_tree(X_train, y_train, X_validate, y_validate, threshold=0.05, max_
     # plot the data
     results[['max_depth', 'train_accuracy', 'validate_accuracy']].set_index('max_depth').plot(figsize = (16,9), linewidth=2)
     plt.ylim(0.50, 1)
+    plt.title('Decision Tree', fontsize = 20)
     plt.xlabel("Max Depth", fontsize = 16)
     plt.ylabel('Accuracy', fontsize = 18)
     plt.xticks(np.arange(1, i+1, 1))
@@ -78,6 +82,10 @@ def decision_tree(X_train, y_train, X_validate, y_validate, threshold=0.05, max_
 #-------------------------------------------------------
 # Random Forest
 def rand_forest(X_train, y_train, X_validate, y_validate, threshold=0.05, max_dep=7):
+    '''
+    This function uses the sklearn RandomForestClassifier 
+    to create a random forrest model
+    '''
     models = []                 # For output
     metrics = []                # For output
     for i in range(2, max_dep): # Max Depth
@@ -129,6 +137,7 @@ def rand_forest(X_train, y_train, X_validate, y_validate, threshold=0.05, max_de
 
     results[['max_depth', 'train_accuracy', 'validate_accuracy']].set_index('max_depth').plot(figsize = (16,9), linewidth=2)
     plt.ylim(0.50, 1)
+    plt.title('Random Forest', fontsize = 20)
     plt.xlabel("Max Depth", fontsize = 16)
     plt.ylabel('Accuracy', fontsize = 18)
     plt.xticks(np.arange(1, i+1, 1))
@@ -139,6 +148,10 @@ def rand_forest(X_train, y_train, X_validate, y_validate, threshold=0.05, max_de
 #-------------------------------------------------------
 # KNN
 def knn(X_train, y_train, X_validate, y_validate, max_k = 26):
+    '''
+    This function uses the sklearn KNeighborsClassifier 
+    to create a k neraest neighbors model
+    '''
     metrics = []        # For output
 
     # loop through different values of k
@@ -171,6 +184,7 @@ def knn(X_train, y_train, X_validate, y_validate, max_k = 26):
     # plot the data
     results[['k', 'train_accuracy', 'validate_accuracy']].set_index('k').plot(figsize = (16,9), linewidth=2)
     plt.ylim(0.50, 1)
+    plt.title('KNN', fontsize = 20)
     plt.xlabel("k", fontsize = 16)
     plt.ylabel('Accuracy', fontsize = 18)
     plt.xticks(np.arange(1, k+1, 1))
@@ -181,6 +195,10 @@ def knn(X_train, y_train, X_validate, y_validate, max_k = 26):
 #-------------------------------------------------------
 # Logistic Regression
 def log_regression(X_train, y_train):
+    '''
+    This function uses the sklearn LogisticRegression 
+    to create a logistic regression model for the train data
+    '''
     # Train Data
     logit = LogisticRegression(C=1, random_state=123)   # Create the model
     logit.fit(X_train, y_train)                         # Fit the model with Train Data
@@ -199,6 +217,10 @@ def log_regression(X_train, y_train):
     return train_class_report
 
 def log_regression_val(X_train, y_train, X_validate, y_validate):
+    '''
+    This function uses the sklearn LogisticRegression 
+    to create a logistic regression model for the train data
+    '''
     # Validate Data
     logit = LogisticRegression(C=1, random_state=123)   # Create the model
     logit.fit(X_train, y_train)                         # Fit the model with Train Data

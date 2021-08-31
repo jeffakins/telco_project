@@ -7,6 +7,10 @@ import acquire as aq
 #--------Functions-------
 
 def prep_telco():
+    '''
+    This function will walk through all of the cleaning and data prep 
+    process needed to explore and model the Telco data set
+    '''
     df = aq.get_telco_data()                            # Using Acquire function to bring in telco data
     
     df = df.drop_duplicates()                           # Dropping Duplicates
