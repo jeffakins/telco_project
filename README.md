@@ -148,4 +148,4 @@ customer_id |   customer id number  | object
 ##### Best model was a Random Forrest using all features
 
 ## Conclusion 
-### We can predict with roughly 80% accuracy whether a customer will churn. I recommend sharing this model with our customer service representatives to better inform them when they are supporting our TELCO customers. 
+### We can predict with roughly 80% accuracy whether a customer will churn. 
