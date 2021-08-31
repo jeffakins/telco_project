@@ -180,7 +180,7 @@ def knn(X_train, y_train, X_validate, y_validate, max_k = 26):
 
 #-------------------------------------------------------
 # Logistic Regression
-def log_regression(X_train, y_train, X_validate, y_validate):
+def log_regression(X_train, y_train):
     # Train Data
     logit = LogisticRegression(C=1, random_state=123)   # Create the model
     logit.fit(X_train, y_train)                         # Fit the model with Train Data
@@ -194,9 +194,17 @@ def log_regression(X_train, y_train, X_validate, y_validate):
     print("")
     print("Train Data:")
     train_class_report = pd.DataFrame(classification_report(y_train, y_pred, output_dict=True))
-    print(train_class_report)                           # Print accuracy report on Train Data
+    #print(train_class_report)                           # Print accuracy report on Train Data
 
+    return train_class_report
+
+def log_regression_val(X_train, y_train, X_validate, y_validate):
     # Validate Data
+    logit = LogisticRegression(C=1, random_state=123)   # Create the model
+    logit.fit(X_train, y_train)                         # Fit the model with Train Data
+    print('Coefficient: \n', logit.coef_)               # Print coeffecients
+    print('Intercept: \n', logit.intercept_)            # Print the intercept
+
     y_pred = logit.predict(X_validate)                  # y prediction
     y_pred_proba = logit.predict_proba(X_validate)      # y prob
     print("Validate Confusion Matrix:") 
@@ -204,6 +212,6 @@ def log_regression(X_train, y_train, X_validate, y_validate):
     print("")
     print("Validate Data:")
     val_class_report = pd.DataFrame(classification_report(y_validate, y_pred, output_dict=True))
-    print(val_class_report)                             # Print accuracy report on Validate Data
+    #print(val_class_report)                             # Print accuracy report on Validate Data
 
-    return train_class_report, val_class_report
+    return val_class_report
