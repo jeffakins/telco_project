@@ -30,10 +30,10 @@
 #### Why are our customers churning?
 - They are on a monthly contract
 - They have fiber internet	
-- They pay with electronic_check	
-- Higher monthly_charges	
-- Utilize paperless_billing	
-- They are a senior_citizen	
+- They pay with electronic check	
+- Higher monthly charges	
+- Utilize paperless billing	
+- They are a senior citizen	
 - They stream tv	
 - They stream movies
 
@@ -95,23 +95,24 @@ customer_id |   customer id number  | object
 - Refine features based on explore results
 
 ### Acquire:
-- Acquire function brings in TELCO data from SQL server
-- 7043 Rows
-- 24 Columns
+- Acquire.py function brings in TELCO data from Codeup's MySQL server
+- 7043 Rows (customers)
+- 24 Columns (features)
 
 ### Prepare:
-- Uses the prep_telco function to bring in the Telco Data
-- Drop Duplicates
-- Removed white space
-- Replaced 'total_charges' empty cells with 0 due to tenure = 0
-- Convert 'total_charges' from obj to float
+- Used the prep_telco.py function to clean the Telco Data, whcih included:
+- Dropping Duplicates
+- Removing white space
+- Replacing 'total_charges' empty cells with 0 due to tenure = 0
+- Converting 'total_charges' from obj to float
 - Encoding (Changing Yes to 1 and No to 0)
-- Created dummy variables for 'gender', 'contract', 'internet', 'payment_type' 
-- Concatenated dummy variables
-- Dropped 7 redundant columns
-- Renamed 12 columns to shorten the names
-- 7043 Rows
-- 29 Columns
+- Creating dummy variables for 'gender', 'contract', 'internet', 'payment_type' 
+- Concatenating the dummy variables
+- Dropping 7 redundant columns
+- Renaming 12 columns to shorten the names
+- Results:
+  - 7043 Rows
+  - 29 Columns
 
 ### Explore:
 #### Univariate
@@ -122,18 +123,18 @@ customer_id |   customer id number  | object
 - Significance Level, alpha = 0.05
 - Target = churn
 ###### 24 Chi^2 Tests - Churn vs Categorical Variables
-- ${H}_{0}$: churn is independent of each categorical variable
-- ${H}_{a}$: churn has a dependent relationship with each categorical variable
+- H<sub>0</sub>: churn is independent of each categorical variable
+- H<sub>a</sub>: churn has a dependent relationship with each categorical variable
 - Rejected ${H}_{0}$ in all cases due to p<0.05, except: 'male', 'female', 'phone_service'
 ###### 2 Mann-Whitney Test - Churn vs Continuous Variables
-- ${H}_{0}$: there is no relationship between tenure or monthly charges and churn 
-- ${H}_{a}$: churn has a linear relationship with each continuous variable
+- H<sub>0</sub>: there is no relationship between tenure or monthly charges and churn 
+- H<sub>a</sub>: churn has a linear relationship with each continuous variable
 - Rejected ${H}_{0}$ due to p<0.05 in both cases
 #### Multivariate
 - Grouped by category
 - Showed clusters of churn within all features
 #### Correlation Heatmap
-##### Findings:
+##### Correlations Findings:
 - total_charges and tenure 
 - monthly charges and fiber
 - monthly charges and no internet
@@ -149,3 +150,24 @@ customer_id |   customer id number  | object
 
 ## Conclusion 
 ### We can predict with roughly 80% accuracy whether a customer will churn. 
+#### We can also conclude that customers with these TELCO features (services) increase their probability of churn:
+- Customers on a monthly contract 
+- Customers using fiber internet	
+- Customers that pay with an electronic check	
+- Higher monthly charges increase the probability of churn	
+- Customers that use paperless billing	
+- Customers that are a senior citizen	
+- Customers that stream tv	
+- Customers that stream movies
+#### These features help to reduce churn:
+- Customers that use TELCO's online backup service	
+- Customers that pay with a mailed check	
+- Customers that pay using bank transfer
+- Customers that pay with credit card	
+- Customers using dsl internet	
+- Customers that have a partner and/or dependents	
+- Customers that use our tech support	
+- Customers that use online security	
+- Customers that have a one or two year contract	
+- Customers that do not use our internet services	
+- Higher tenure as a TELCO customer decreases the probability of churn
