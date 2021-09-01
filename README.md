@@ -1,6 +1,7 @@
+![TELCO Logo](https://upload.wikimedia.org/wikipedia/commons/6/6d/Telco_System_Logo.jpg)
+
 # TELCO Classification Project 
 ### - by Jeff Akins
-![TELCO Logo](https://upload.wikimedia.org/wikipedia/commons/6/6d/Telco_System_Logo.jpg)
 
 ## Project Summary
 
@@ -87,8 +88,6 @@ Other   | Description   | Data Type
 customer_id |   customer id number  | object
 
 ## Project Specifications
-- Answering the question "Why are our customers churning?"
-- If we can answer the above question, then can we predict customer churn?
 
 ### Plan:
 - Initially model all data
@@ -125,11 +124,11 @@ customer_id |   customer id number  | object
 ###### 24 Chi^2 Tests - Churn vs Categorical Variables
 - H<sub>0</sub>: churn is independent of each categorical variable
 - H<sub>a</sub>: churn has a dependent relationship with each categorical variable
-- Rejected ${H}_{0}$ in all cases due to p<0.05, except: 'male', 'female', 'phone_service'
+- Rejected H<sub>0</sub> in all cases due to p<0.05, except: 'male', 'female', 'phone_service'
 ###### 2 Mann-Whitney Test - Churn vs Continuous Variables
 - H<sub>0</sub>: there is no relationship between tenure or monthly charges and churn 
 - H<sub>a</sub>: churn has a linear relationship with each continuous variable
-- Rejected ${H}_{0}$ due to p<0.05 in both cases
+- Rejected H<sub>0</sub> due to p<0.05 in both cases
 #### Multivariate
 - Grouped by category
 - Showed clusters of churn within all features
